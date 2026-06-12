@@ -20,10 +20,16 @@ const spDir = join(DEMO, ".spinnerpay");
 rmSync(DEMO, { recursive: true, force: true });
 mkdirSync(DEMO, { recursive: true });
 
-if (existsSync(REAL)) copyFileSync(REAL, settingsPath);
-else writeFileSync(settingsPath, "{}\n");
-const before = readFileSync(settingsPath, "utf8");
-console.log(`copied real settings.json (${before.length} bytes) -> ${settingsPath}\n`);
+// Build a PRISTINE pre-install baseline from the real settings shape. If
+// SpinnerPay is already installed and live, its keys are in the real file;
+// strip them so this tests a clean install round-trip, not a re-patch.
+let baseObj = {};
+if (existsSync(REAL)) { try { baseObj = JSON.parse(readFileSync(REAL, "utf8")); } catch { baseObj = {}; } }
+delete baseObj.statusLine;
+delete baseObj.spinnerVerbs;
+const before = JSON.stringify(baseObj, null, 2) + "\n";
+writeFileSync(settingsPath, before);
+console.log(`pristine baseline from real settings (${before.length} bytes) -> ${settingsPath}\n`);
 
 const ad = {
   adText: "SpinnerPay: get paid while your AI codes. spinnerpay.ai",
