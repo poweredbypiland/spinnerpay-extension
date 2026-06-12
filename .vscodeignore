@@ -1,0 +1,15 @@
+# Ship only the bundle + manifest + docs. Excluding node_modules/src/scripts
+# keeps the .vsix tiny and avoids the Marketplace "suspicious content" scanner
+# flagging bundled dependencies.
+.vscode/**
+.git/**
+node_modules/**
+src/**
+scripts/**
+.gitignore
+tsconfig.json
+esbuild.mjs
+package-lock.json
+**/*.ts
+**/*.map
+**/*.vsix
