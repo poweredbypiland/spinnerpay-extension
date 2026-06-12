@@ -26,8 +26,8 @@ const before = readFileSync(settingsPath, "utf8");
 console.log(`copied real settings.json (${before.length} bytes) -> ${settingsPath}\n`);
 
 const ad = {
-  adText: "Fluidstack — building 10GW of compute. Join us.",
-  clickUrl: "https://www.fluidstack.io",
+  adText: "SpinnerPay: get paid while your AI codes. spinnerpay.ai",
+  clickUrl: "https://spinnerpay.ai",
 };
 
 // 1) APPLY
