@@ -41,6 +41,7 @@
     ]
   },
   "scripts": {
+    "vscode:prepublish": "node esbuild.mjs",
     "build": "node esbuild.mjs",
     "typecheck": "tsc --noEmit",
     "demo": "node scripts/woz-demo.mjs",
